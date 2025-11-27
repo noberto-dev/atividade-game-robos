@@ -1,24 +1,22 @@
 from robo import Robo
 from config import LARGURA, ALTURA
 import pygame
-class RoboCiclico(Robo):
-    def __init__(self, x, y):
-        super().__init__(x, y, velocidade=2)
-        self.image.fill((0, 150, 255))  
-        self.raio = 60
-        self.centro_x = x
-        self.centro_y = y
+import math
+
+class RoboCircular(Robo):
+    def __init__(self, x, y, raio=60, velocidade_rotacao=0.25):
+        super().__init__(x, y, velocidade=5)
+        self.raio = raio
+        self.velocidade_rotacao = velocidade_rotacao
+        self.angulo = 0 
+        self.centro = pygame.Vector2(x, y)
+        self.image.fill((0, 100, 255))
 
     def atualizar_posicao(self):
-        self.angulo += 0.05 
-        self.rect.x = self.centro_x + int(self.raio * pygame.math.cos(self.angulo))
-        self.rect.y = self.centro_y + int(self.raio * pygame.math.sin(self.angulo))
-
-        
-        self.centro_y += 0.5
-
-        if self.rect.y > ALTURA:
-            self.kill()
+        self.angulo += self.velocidade_rotacao
+        self.rect.x = self.centro.x + math.cos(self.angulo) * self.raio
+        self.rect.y = self.centro.y + math.sin(self.angulo) * self.raio
+        self.centro.y += self.velocidade
 
     def update(self):
         self.atualizar_posicao()
