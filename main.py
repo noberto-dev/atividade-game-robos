@@ -5,7 +5,9 @@ from jogador import Jogador
 from robo import Robo
 from tiro import Tiro
 from config import LARGURA, ALTURA
-
+from robo_ziguezague import RoboZigueZague
+from robociclico import RoboCiclico 
+from robosaltador import RoboSaltador
 
 if __name__ == "__main__":
     pygame.init()
@@ -25,7 +27,7 @@ if __name__ == "__main__":
 
     pontos = 0
     spawn_timer = 0
-
+    tipos = [RoboZigueZague, RoboCiclico, RoboSaltador]
     rodando = True
     while rodando:
         clock.tick(FPS)
@@ -39,15 +41,18 @@ if __name__ == "__main__":
                     tiro = Tiro(jogador.rect.centerx, jogador.rect.y)
                     todos_sprites.add(tiro)
                     tiros.add(tiro)
+                    todos_sprites.add(robo)
+            
 
         # timer de entrada dos inimigos
+
+        
         spawn_timer += 1
         if spawn_timer > 40:
-            robo = RoboZigueZague(random.randint(40, LARGURA - 40), -40)
-            todos_sprites.add(robo)
+            tipo_robo = random.choice(tipos)
+            robo = tipo_robo((random.randint(40, LARGURA - 40), -40))
             inimigos.add(robo)
             spawn_timer = 0
-
         # colisão tiro x robô
         colisao = pygame.sprite.groupcollide(inimigos, tiros, True, True)
         pontos += len(colisao)
