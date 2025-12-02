@@ -16,6 +16,7 @@ if __name__ == "__main__":
     
     TELA = pygame.display.set_mode((LARGURA, ALTURA))
     pygame.display.set_caption("Robot Defense - Template")
+    Fundo = pygame.image.load('Mappa.png').convert()
 
     FPS = 60
     clock = pygame.time.Clock()
@@ -74,13 +75,14 @@ if __name__ == "__main__":
         todos_sprites.update()
 
         # desenhar
-        TELA.fill((20, 20, 20))
-        todos_sprites.draw(TELA)
+       
 
         # Painel de pontos e vida
         font = pygame.font.SysFont(None, 30)
         texto = font.render(f"Vida: {jogador.vida}  |  Pontos: {pontos}", True, (255, 255, 255))
+        TELA.blit(Fundo,(0, 0))
         TELA.blit(texto, (10, 10))
+        todos_sprites.draw(TELA)
 
         pygame.display.flip()
 
