@@ -25,5 +25,5 @@ class RoboSaltador(Robo):
         if self.rect.y > ALTURA:
             self.kill()
 
-    def update(self):
+    def update(self,):
         self.atualizar_posicao()

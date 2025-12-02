@@ -8,6 +8,8 @@ from config import LARGURA, ALTURA
 from robo_ziguezague import RoboZigueZague
 from robociclico import RoboCircular 
 from robosaltador import RoboSaltador
+from robocacador import RoboCacador
+
 
 if __name__ == "__main__":
     pygame.init()
@@ -27,7 +29,10 @@ if __name__ == "__main__":
 
     pontos = 0
     spawn_timer = 0
-    tipos = [RoboZigueZague, RoboSaltador, RoboCircular]
+
+    # tipos de robôs que aparecem
+    tipos = [RoboZigueZague, RoboSaltador, RoboCircular, RoboCacador]
+
     rodando = True
     while rodando:
         clock.tick(FPS)
@@ -36,23 +41,24 @@ if __name__ == "__main__":
             if event.type == pygame.QUIT:
                 rodando = False
 
+            # tiro
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     tiro = Tiro(jogador.rect.centerx, jogador.rect.y)
                     todos_sprites.add(tiro)
                     tiros.add(tiro)
-                    todos_sprites.add(robo)
-            
-
-        # timer de entrada dos inimigos
-
-        
+            #timer de entrada dos inimigos
         spawn_timer += 1
         if spawn_timer > 40:
             tipo_robo = random.choice(tipos)
             robo = tipo_robo(random.randint(40, LARGURA - 40), -40)
+            #movimento do caçador
+            if isinstance(robo, RoboCacador):
+                robo.set_jogador(jogador)
             inimigos.add(robo)
+            todos_sprites.add(robo)
             spawn_timer = 0
+
         # colisão tiro x robô
         colisao = pygame.sprite.groupcollide(inimigos, tiros, True, True)
         pontos += len(colisao)  
@@ -71,7 +77,7 @@ if __name__ == "__main__":
         TELA.fill((20, 20, 20))
         todos_sprites.draw(TELA)
 
-        #Painel de pontos e vida
+        # Painel de pontos e vida
         font = pygame.font.SysFont(None, 30)
         texto = font.render(f"Vida: {jogador.vida}  |  Pontos: {pontos}", True, (255, 255, 255))
         TELA.blit(texto, (10, 10))

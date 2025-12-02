@@ -15,7 +15,7 @@ class RoboZigueZague(Robo):
         if self.rect.x <= 0 or self.rect.x >= LARGURA - 40:
             self.direcao *= -1
 
-    def update(self):
+    def update(self,):
         self.atualizar_posicao()
         if self.rect.y > ALTURA:
             self.kill()
