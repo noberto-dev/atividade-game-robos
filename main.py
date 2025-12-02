@@ -9,7 +9,7 @@ from robo_ziguezague import RoboZigueZague
 from robociclico import RoboCircular 
 from robosaltador import RoboSaltador
 from robocacador import RoboCacador
-
+from robo_sistema import RoboLento, RoboRapido
 
 if __name__ == "__main__":
     pygame.init()
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     spawn_timer = 0
 
     # tipos de robôs que aparecem
-    tipos = [RoboZigueZague, RoboSaltador, RoboCircular, RoboCacador]
+    tipos = [RoboLento, RoboRapido]
 
     rodando = True
     while rodando:
