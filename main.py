@@ -16,7 +16,7 @@ if __name__ == "__main__":
     
     TELA = pygame.display.set_mode((LARGURA, ALTURA))
     pygame.display.set_caption("Robot Defense - Template")
-    Fundo = pygame.image.load('Mappa.png').convert()
+    Fundo = pygame.image.load('mapa1.png').convert()
 
     FPS = 60
     clock = pygame.time.Clock()
