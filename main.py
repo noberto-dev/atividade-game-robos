@@ -11,6 +11,8 @@ from robosaltador import RoboSaltador
 from robocacador import RoboCacador
 from robo_sistema import RoboLento, RoboRapido
 from robochefe import Robochefe
+from explosao import Explosao
+
 if __name__ == "__main__":
     pygame.init()
     
@@ -93,6 +95,12 @@ if __name__ == "__main__":
         pontos += len(colisao) 
         colisaochefe = pygame.sprite.groupcollide(chefe_robo, tiros, True, True)
         pontos += len(colisaochefe)  
+
+        for robo in colisao: 
+            pontos += 1
+            # criar explosão no local do robô destruído
+            explosao = Explosao(robo.rect.centerx, robo.rect.centery)
+            todos_sprites.add(explosao)
 
         # colisão robô x jogador
         if pygame.sprite.spritecollide(jogador, inimigos, True):
