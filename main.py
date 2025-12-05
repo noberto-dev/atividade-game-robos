@@ -10,6 +10,8 @@ from robociclico import RoboCircular
 from robosaltador import RoboSaltador
 from robocacador import RoboCacador
 from robo_sistema import RoboLento, RoboRapido
+from explosao import Explosao
+
 
 if __name__ == "__main__":
     pygame.init()
@@ -32,7 +34,7 @@ if __name__ == "__main__":
     spawn_timer = 0
 
     # tipos de robôs que aparecem
-    tipos = [RoboLento, RoboRapido]
+    tipos = [RoboLento, RoboRapido, RoboZigueZague, RoboCircular, RoboSaltador]
 
     rodando = True
     while rodando:
@@ -63,6 +65,13 @@ if __name__ == "__main__":
         # colisão tiro x robô
         colisao = pygame.sprite.groupcollide(inimigos, tiros, True, True)
         pontos += len(colisao)  
+
+        for robo in colisao: 
+            pontos += 1
+            # criar explosão no local do robô destruído
+            explosao = Explosao(robo.rect.centerx, robo.rect.centery)
+            todos_sprites.add(explosao)
+
 
         # colisão robô x jogador
         if pygame.sprite.spritecollide(jogador, inimigos, True):
