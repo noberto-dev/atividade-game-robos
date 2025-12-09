@@ -8,10 +8,14 @@ from config import LARGURA, ALTURA
 from robo_ziguezague import RoboZigueZague
 from robociclico import RoboCircular 
 from robosaltador import RoboSaltador
+<<<<<<< Updated upstream
 from robocacador import RoboCacador
 from robo_sistema import RoboLento, RoboRapido
 from robochefe import Robochefe
 from explosao import Explosao
+=======
+from guitarra import Guitarra
+>>>>>>> Stashed changes
 
 if __name__ == "__main__":
     pygame.init()
@@ -28,12 +32,15 @@ if __name__ == "__main__":
     todos_sprites = pygame.sprite.Group()
     inimigos = pygame.sprite.Group()
     tiros = pygame.sprite.Group()
-
+    power_ups = pygame.sprite.Group()
     jogador = Jogador(LARGURA // 2, ALTURA - 60)
+    guitarra = Guitarra(LARGURA // 3, ALTURA - 200)
+    todos_sprites.add(guitarra)
     todos_sprites.add(jogador)
 
     pontos = 0
     spawn_timer = 0
+<<<<<<< Updated upstream
 
     chefe = 1
     quantidade_inimigo = 0
@@ -42,6 +49,9 @@ if __name__ == "__main__":
     # tipos de robôs que aparecem
     tipos = [RoboLento, RoboRapido]
 
+=======
+    tipos = [RoboZigueZague, RoboSaltador]
+>>>>>>> Stashed changes
     rodando = True
     while rodando:
         clock.tick(FPS)
@@ -56,6 +66,7 @@ if __name__ == "__main__":
                     tiro = Tiro(jogador.rect.centerx, jogador.rect.y)
                     todos_sprites.add(tiro)
                     tiros.add(tiro)
+<<<<<<< Updated upstream
         spawn_timer += 1        
         if len(chefe_robo) > 0 :
             if spawn_timer > 60:
@@ -64,10 +75,19 @@ if __name__ == "__main__":
                inimigos.add(robo)
                spawn_timer = 0
             #timer de entrada dos inimigos
+=======
+                    
+
+            
+
+        # timer de entrada dos inimigos
+
+>>>>>>> Stashed changes
         
         elif spawn_timer > 40:
             tipo_robo = random.choice(tipos)
             robo = tipo_robo(random.randint(40, LARGURA - 40), -40)
+<<<<<<< Updated upstream
             
             #movimento do caçador
             if isinstance(robo, RoboCacador):
@@ -101,6 +121,15 @@ if __name__ == "__main__":
             # criar explosão no local do robô destruído
             explosao = Explosao(robo.rect.centerx, robo.rect.centery)
             todos_sprites.add(explosao)
+=======
+            inimigos.add(robo)
+            todos_sprites.add(robo)
+            spawn_timer = 0
+
+        # colisão tiro x robô
+        colisao = pygame.sprite.groupcollide(inimigos, tiros, True, True)
+        pontos += len(colisao)  
+>>>>>>> Stashed changes
 
         # colisão robô x jogador
         if pygame.sprite.spritecollide(jogador, inimigos, True):
@@ -117,7 +146,7 @@ if __name__ == "__main__":
 
         # atualizar
         todos_sprites.update()
-
+ 
         # desenhar
        
 
