@@ -101,7 +101,7 @@ if __name__ == "__main__":
             # criar explosão no local do robô destruído
             explosao = Explosao(robo.rect.centerx, robo.rect.centery)
             todos_sprites.add(explosao)
-
+  
         # colisão robô x jogador
         if pygame.sprite.spritecollide(jogador, inimigos, True):
             jogador.vida -= 1
