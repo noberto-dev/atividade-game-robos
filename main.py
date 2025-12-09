@@ -37,7 +37,7 @@ if __name__ == "__main__":
 
     chefe = 1
     quantidade_inimigo = 0
-    quantidade_chefe = 50
+    quantidade_chefe = 1
 
     # tipos de robôs que aparecem
     tipos = [RoboLento, RoboRapido]
@@ -78,16 +78,19 @@ if __name__ == "__main__":
             spawn_timer = 0
             quantidade_inimigo +=1
 
+
             if quantidade_inimigo >= quantidade_chefe:
                 robochefe = Robochefe(random.randint(40, LARGURA - 40), -40, tiros_robo, todos_sprites, jogador)
                 todos_sprites.add(robochefe)
                 chefe_robo.add(robochefe)
-                
+                if pygame.sprite.spritecollide(robochefe, tiros, True):
+                    robochefe.vida -= 1
+                print(robochefe.vida)
 
                 quantidade_chefe = 50
                 chefe +=1
                 quantidade_chefe= quantidade_chefe * chefe
-            print(quantidade_chefe,quantidade_inimigo)
+            
 
 
         # colisão tiro x robô
@@ -102,6 +105,7 @@ if __name__ == "__main__":
             explosao = Explosao(robo.rect.centerx, robo.rect.centery)
             todos_sprites.add(explosao)
 
+        
         # colisão robô x jogador
         if pygame.sprite.spritecollide(jogador, inimigos, True):
             jogador.vida -= 1
