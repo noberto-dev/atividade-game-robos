@@ -6,7 +6,7 @@ class Explosao(pygame.sprite.Sprite):
 
         self.frames = []
         for i in range(11):
-            img = pygame.image.load(f"explosao_sprites\explosion-d{i}.png").convert_alpha()
+            img = pygame.image.load(f"assets/explosion-d{i}.png").convert_alpha()
             self.frames.append(img)
 
         self.frame_atual = 0
