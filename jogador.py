@@ -5,7 +5,7 @@ from config import LARGURA, ALTURA
 class Jogador(Entidade):
     def __init__(self, x, y):
         super().__init__(x, y, 5)
-        self.image = pygame.image.load("personagem.png")
+        self.image = pygame.image.load("atividade-game-robos-main/assets/personagem.png")
         self.image = pygame.transform.scale(self.image, (90,90))
         self.vida = 5
 
