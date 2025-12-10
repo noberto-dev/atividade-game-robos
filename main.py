@@ -37,10 +37,10 @@ if __name__ == "__main__":
 
     chefe = 1
     quantidade_inimigo = 0
-    quantidade_chefe = 50
+    quantidade_chefe = 1  
 
     # tipos de robôs que aparecem
-    tipos = [RoboLento, RoboRapido]
+    tipos = [RoboLento]
 
     rodando = True
     while rodando:
