@@ -5,7 +5,8 @@ from config import LARGURA, ALTURA
 class Jogador(Entidade):
     def __init__(self, x, y):
         super().__init__(x, y, 5)
-        self.image.fill((0, 255, 0))  # verde
+        self.image = pygame.image.load("personagem.png")
+        self.image = pygame.transform.scale(self.image, (90,90))
         self.vida = 5
 
     def update(self):
