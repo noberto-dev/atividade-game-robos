@@ -5,14 +5,13 @@ class RoboCacador(Robo):
     def __init__(self, x, y):
         super().__init__(x, y, velocidade=7)
 
-        from jogador import Jogador
         self.jogador = None 
-        self.image.fill((255, 0, 255))
 
     def set_jogador(self, jogador):
         self.jogador = jogador
 
-    def update(self):
+
+    def atualizar_posicao(self):
         if self.jogador is None:
             return
         
