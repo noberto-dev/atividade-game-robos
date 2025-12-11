@@ -14,9 +14,8 @@ class RoboCircular(Robo):
 
     def atualizar_posicao(self):
         self.angulo += self.velocidade_rotacao
+
         self.rect.x = self.centro.x + math.cos(self.angulo) * self.raio
         self.rect.y = self.centro.y + math.sin(self.angulo) * self.raio
-        self.centro.y += self.velocidade
 
-    def update(self,):
-     self.atualizar_posicao()
+        self.centro.y += self.velocidade
